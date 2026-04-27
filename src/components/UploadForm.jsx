@@ -4,7 +4,8 @@ import { demoDatasets } from '../data/demoData';
 
 
 
-function UploadForm({ setPreviewData }) {
+
+function UploadForm({ setPreviewData ,setLoading}) {
 
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function UploadForm({ setPreviewData }) {
 const handleUpload=async()=>{
   try{
     //case1
+    setLoading(true); 
      if (demoType) {
       const demoData = demoDatasets[demoType];
 
@@ -32,12 +34,14 @@ const handleUpload=async()=>{
       });
 
       const data = await res.json();
+      setLoading(false);
       navigate("/dashboard", { state: data });
       return;
     }
     //case 2
 
     if (!file) {
+      setLoading(false); 
       alert("Please select a file");
       return;
     }
@@ -50,9 +54,11 @@ const handleUpload=async()=>{
     body: formData
   });
   const data= await res.json();
+   setLoading(false);
   navigate("/dashboard",{state:data});
   }catch(error){
     console.error(error);
+     setLoading(false);
     alert("Something went wrong");
   }
 };
