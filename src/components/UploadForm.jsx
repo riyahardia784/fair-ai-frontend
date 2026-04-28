@@ -25,7 +25,7 @@ const handleUpload=async()=>{
      if (demoType) {
       const demoData = demoDatasets[demoType];
 
-      const res = await fetch("https://fair-ai-backend.onrender.com/FairAI/analyze", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/FairAI/analyze`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -49,7 +49,7 @@ const handleUpload=async()=>{
   const formData=new FormData();
   formData.append("csvData",file);
   
-  const res= await fetch("https://fair-ai-backend.onrender.com/FairAI/analyze",{
+  const res= await fetch(`${import.meta.env.VITE_API_URL}/FairAI/analyze`,{
     method: "POST",
     body: formData
   });

@@ -49,7 +49,7 @@ const handleExplain=async()=>{
    try {
     setLoadingExplain(true);
     setShowExplain(true);
-  const res= await fetch('https://fair-ai-backend.onrender.com/FairAI/ai/explain',{
+  const res= await fetch(`${import.meta.env.VITE_API_URL}/FairAI/ai/explain`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
@@ -73,7 +73,7 @@ const handleSuggest=async()=>{
    try {
     setLoadingSuggest(true);
     setShowSuggest(true);
-  const res= await fetch('https://fair-ai-backend.onrender.com/FairAI/ai/suggest',{
+  const res= await fetch(`${import.meta.env.VITE_API_URL}/FairAI/ai/suggest`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json"
